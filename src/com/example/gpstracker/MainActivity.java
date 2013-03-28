@@ -34,6 +34,11 @@ public class MainActivity extends Activity {
 		super.onDestroy();
 	}
 	
+	public void sendSomething(View view){
+		Intent i = new Intent(this, GPSTrack.class);
+		startService(i);
+	}
+	
 	public void startNotify(View view){
 		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
 		long time = SystemClock.elapsedRealtime();
