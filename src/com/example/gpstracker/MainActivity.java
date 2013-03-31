@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 
 public class MainActivity extends Activity {
 
@@ -16,10 +17,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Intent inn = new Intent(this, GPSTrack.class);
-		inn.putExtra("command", "notify");
-		schedule = PendingIntent.getService(getApplicationContext(), 12, inn, 0);
-		
 	}
 
 	@Override
@@ -34,20 +31,22 @@ public class MainActivity extends Activity {
 		super.onDestroy();
 	}
 	
-	public void sendSomething(View view){
-		Intent i = new Intent(this, GPSTrack.class);
-		startService(i);
-	}
-	
 	public void startNotify(View view){
-		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+		EditText et = (EditText) findViewById(R.id.editText1);
+		Intent inn = new Intent(this, GPSTrack.class);
+		if (!(et.getText().toString().equals(""))){
+			inn.putExtra("period", Integer.parseInt(et.getText().toString()));
+		}
+	//	schedule = PendingIntent.getService(getApplicationContext(), 12, inn, 0);
+		startService(inn);
+		/*AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
 		long time = SystemClock.elapsedRealtime();
-		am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, time + 10, 5000, schedule);
+		am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, time + 10, 5000, schedule);*/
 	}
 	
 	public void endNotify(View view){
-		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-		am.cancel(schedule);
+	//	AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+//		am.cancel(schedule);
 		Intent i = new Intent(this, GPSTrack.class);
 		i.putExtra("command", "finish");
 		startService(i);
