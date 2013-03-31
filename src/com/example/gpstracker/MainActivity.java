@@ -1,11 +1,23 @@
 package com.example.gpstracker;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -50,6 +62,39 @@ public class MainActivity extends Activity {
 		Intent i = new Intent(this, GPSTrack.class);
 		i.putExtra("command", "finish");
 		startService(i);
+	}
+	
+	public void send(View view){
+		JSONObject json = new JSONObject();
+		try {
+			json.put("name", "sygi");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		StringEntity se = null;
+		try {
+			se = new StringEntity(json.toString());
+			se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//obiekt json i StringEntity utworzone
+		
+		//TODO hard coded string
+		HttpPost post = new HttpPost("http://192.168.1.103");
+		post.setEntity(se);
+		HttpClient client = new DefaultHttpClient();
+		try {
+			client.execute(post);
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
