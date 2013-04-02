@@ -53,6 +53,7 @@ public class Data {
 		try {
 			Log.d("sygi", "sending");
 			client.execute(post);
+			lastSent = pos.size() - 1;
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
