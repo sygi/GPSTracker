@@ -65,36 +65,11 @@ public class MainActivity extends Activity {
 	}
 	
 	public void send(View view){
-		JSONObject json = new JSONObject();
-		try {
-			json.put("name", "sygi");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		StringEntity se = null;
-		try {
-			se = new StringEntity(json.toString());
-			se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//obiekt json i StringEntity utworzone
-		
-		//TODO hard coded string
-		HttpPost post = new HttpPost("http://192.168.1.103");
-		post.setEntity(se);
-		HttpClient client = new DefaultHttpClient();
-		try {
-			client.execute(post);
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		EditText edit = (EditText) findViewById(R.id.address);
+		String costam = edit.getText().toString();
+		if (costam.equals(""))
+			costam = "http://192.168.1.101:8080/submit/";
+		Data.sendTo(costam);
 	}
 
 }

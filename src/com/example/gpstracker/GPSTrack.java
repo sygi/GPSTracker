@@ -11,8 +11,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class GPSTrack extends Service {
-
-	
 	private Location loc;
 	private LocationManager lm;
 	private LocationListener ll;
@@ -61,6 +59,7 @@ public class GPSTrack extends Service {
 			@Override
 			public void onLocationChanged(Location location) {
 				loc = location;
+				Data.pos.add(new Pin(loc.getLongitude(), loc.getLatitude(), loc.getTime()));
 				locNotify();
 			}
 		};

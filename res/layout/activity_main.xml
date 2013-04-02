@@ -35,14 +35,27 @@
         <requestFocus />
     </EditText>
 
+    <EditText
+        android:id="@+id/address"
+        android:hint="IP/submit:port"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/button2"
+        android:layout_marginTop="16dp"
+        android:ems="10" />
+
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp"
-        android:text="Send"
-        android:onClick="send" />
+        android:layout_marginBottom="29dp"
+        android:onClick="send"
+        android:text="Send" />
+
+"
 
 </RelativeLayout>
