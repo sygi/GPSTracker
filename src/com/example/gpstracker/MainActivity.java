@@ -28,6 +28,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Data.context = this;
 		setContentView(R.layout.activity_main);
 	}
 
@@ -66,10 +67,15 @@ public class MainActivity extends Activity {
 	
 	public void send(View view){
 		EditText edit = (EditText) findViewById(R.id.address);
-		String costam = edit.getText().toString();
-		if (costam.equals(""))
+		EditText port = (EditText) findViewById(R.id.port);
+		String costam = "http://" + edit.getText().toString() + ":" + port.getText().toString() + "/submit/";
+		if (costam.equals("http://:/submit/"))
 			costam = "http://192.168.1.101:8080/submit/";
 		Data.sendTo(costam);
+	}
+	
+	public void clearData(View view){
+		Data.clear();
 	}
 
 }

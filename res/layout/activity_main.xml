@@ -4,40 +4,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:onClick="endNotify"
-        android:text="End notification" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_alignRight="@+id/button2"
-        android:layout_marginBottom="37dp"
-        android:onClick="startNotify"
-        android:text="start tracking" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button3"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:inputType="number" >
-
-        <requestFocus />
-    </EditText>
-
     <EditText
         android:id="@+id/address"
-        android:hint="IP/submit:port"
+        android:hint="IP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -45,6 +14,52 @@
         android:layout_below="@+id/button2"
         android:layout_marginTop="16dp"
         android:ems="10" />
+        <EditText
+        android:id="@+id/port"
+        android:hint="port"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/address"
+        android:layout_marginTop="16dp"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button3"
+        android:layout_centerHorizontal="true"
+        android:onClick="endNotify"
+        android:text="End tracking" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/button2"
+        android:layout_below="@+id/editText1"
+        android:onClick="startNotify"
+        android:text="start tracking" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/port"
+        android:layout_toLeftOf="@+id/button2"
+        android:onClick="clearData"
+        android:text="clear data" />
 
     <Button
         android:id="@+id/button1"
@@ -52,7 +67,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="29dp"
         android:onClick="send"
         android:text="Send" />
 
